@@ -1,0 +1,13 @@
+{% extends "AppPitDog/sidebar.html" %}
+
+{% block content %}
+    <div class="content">
+        <h2>Editar Produto: {{ produto.name }}</h2>
+        <form method="POST" action="{% url 'edit_produto' produto.id %}">
+            {% csrf_token %}
+            {{ form.as_p }} 
+            <button type="submit">Salvar Alterações</button>
+        </form>
+        <a href="{% url 'product' %}">Cancelar</a>
+    </div>
+{% endblock %}

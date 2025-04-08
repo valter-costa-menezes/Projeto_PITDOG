@@ -1,0 +1,29 @@
+{% extends "AppPitDog/sidebar.html" %}
+
+{% block content  %}
+    <div class="content">
+        <h2>Pedidos em Produção</h2>
+
+        {% for pedido in pedidos %}
+        <div>
+            <p><strong>Pedido #{{ pedido.id }}</strong> - Status: {{ pedido.get_status_display }}</p>
+            <ul>
+            {% for item in pedido.itens.all %}
+                <li>{{ item.quantidade }}x {{ item.prato.name }}</li>
+        {% empty %}
+            <p>Sem ingredientes cadastrados</p>
+            {% endfor %}
+            </ul>
+            
+            {% if pedido.status != 'finalizado' %}
+            <a href="{% url 'atualizar_status' pedido.id 'produzindo' %}">Produzindo</a>
+            <a href="{% url 'atualizar_status' pedido.id 'finalizado' %}">Finalizar</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock content  %}
+
+

@@ -1,0 +1,18 @@
+{% extends "AppPitDog/sidebar.html" %}
+
+{% block content  %}
+    <div class="content">
+        <h2> {{ detalhe }} </h2>
+
+        <h3>Ingredientes:</h3>
+        <ul>
+            {% for ingrediente in ingredientes %}
+                <li>{{ ingrediente.name }}</li>  
+            {% empty %}
+                <p>Sem ingredientes cadastrados</p>
+            {% endfor %}
+        </ul>
+
+
+
+{% endblock content  %}

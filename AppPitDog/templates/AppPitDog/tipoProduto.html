@@ -1,0 +1,22 @@
+{% extends "AppPitDog/sidebar.html" %}
+
+{% block content  %}
+    <div class="content">
+        <h2>Categorias de produtos</h2>
+        <ul>
+            {% for tipo in tipo %}
+            <li>{{ tipo }} <a href="{% url  'edit_categoria' tipo.id %}">Editar Categoria</a></li>
+            <a href="{% url 'delete_categoria' tipo.id %}" onclick="return confirm('Tem certeza que deseja excluir esta categoria?');">
+                🗑 Deletar
+            </a>
+            <hr>
+            {% empty %}
+            <p>Sem categorias cadastradas</p>
+            {% endfor %}
+    
+        </ul>
+        <a href="{% url 'novo_categoria' %}">Adicionar ➕</a>
+    </div>
+
+
+{% endblock content  %}

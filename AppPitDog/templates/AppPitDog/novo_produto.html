@@ -1,0 +1,14 @@
+
+
+{% extends "AppPitDog/sidebar.html" %}
+
+{% block content %}
+    <div class="content">
+        <form method="post" action="{% url 'novo_produto' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">adicionar</button>
+        </form>
+    </div>
+
+{% endblock content%}

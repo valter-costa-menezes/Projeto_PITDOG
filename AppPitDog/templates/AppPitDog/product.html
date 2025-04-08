@@ -1,0 +1,23 @@
+{% extends "AppPitDog/sidebar.html" %}
+
+{% block content  %}
+    <div class="content">
+        <h2>Produtos cadastrados</h2>
+        <ul>
+            {% for product in product %}
+
+            <li>{{ product }}  <a href="{% url  'edit_produto' product.id %}">Editar Produto</a> </li>
+            <a href="{% url 'delete_produto' product.id %}" onclick="return confirm('Tem certeza que deseja excluir este produto?');">
+                🗑 Deletar
+            </a>
+            <hr>
+            {% empty %}
+            <p>Sem produtos cadastrados</p>
+            {% endfor %}
+    
+        </ul>
+        <a href="{% url 'novo_produto' %}">Adicionar ➕</a>
+    </div>
+
+
+{% endblock content  %}

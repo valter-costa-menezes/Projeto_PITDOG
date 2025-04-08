@@ -1,0 +1,31 @@
+
+
+{% extends "AppPitDog/sidebar.html" %}
+
+{% block content %}
+    <div class="content">
+        <h2>Cardápio</h2>
+
+        {% for categoria in categorias %}
+            <h4>{{ categoria.TypeName }}</h4>  {# Exibe o nome da categoria #}
+            <ul>
+                {% for prato in cardapio %}
+                    {% if prato.tipo.id == categoria.id %}
+                        <li>
+                            <a href="{% url 'detalhe' prato.id %}">{{ prato.name }}</a>
+                            <a href="{% url 'adicionar_ao_carrinho' prato.id %}">Adicionar ao Carrinho</a>
+                            <a href="{% url 'edit_prato' prato.id %}">Editar</a>
+                            <a href="{% url 'delete_prato' prato.id %}" onclick="return confirm('Tem certeza que deseja excluir este produto?');">
+                                🗑 Deletar
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% empty %}
+            <p>Sem categorias cadastradas.</p>
+        {% endfor %}
+
+        <a href="{% url 'novo_prato' %}">Adicionar ➕</a>
+    </div>
+{% endblock content %}
